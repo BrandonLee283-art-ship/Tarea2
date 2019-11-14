@@ -1,0 +1,53 @@
+NaN
+Ir a la navegaciónIr a la búsqueda
+NaN, proviene del acrónimo en inglés Not a Number (en español: no es un número). Este acrónimo se usa generalmente en algunos lenguajes de programación para expresar un resultado imposible de calcular, como el caso de las raíces negativas, indeterminaciones, etc., retornando NaN como resultado de la operación.
+NaN en los enteros[editar]
+La mayoría de los formatos de representación de enteros no posee una forma de indicar la invalidez de los datos. El paquete de perl que indica el entero más grande (BigInt), usa el valor de NaN para los resultados de transformación de cadenas que no sean representables como enteros.
+perl -mMath::BigInt -e "print Math::BigInt->new('foo')"
+NaN 
+NaN en coma flotante[editar]
+En las operaciones de coma flotante, NaN no es lo mismo que infinito, ya que ambos son tratados como casos especiales en las representaciones de coma flotante para números reales, así como en las operaciones. Una operación inválida no es lo mismo que un overflow aritmético (que podría retornar infinito tras la operación) o un underflow aritmético (que puede retornar el número más pequeño que se puede representar).
+Según la norma IEEE 754, los casos de NaN se pueden representar rellenando el campo de exponente con unos y la mantisa con algunos números diferentes de cero. Un ejemplo de esta representación con precisión simple sería:
+x11111111axxxxxxxxxxxxxxxxxxxxxx
+con x como cualquier número. Sí a es 1 es un NaN con dígito 1, sino es un signo. Un valor de NaN no es posible compararlo con algún número de coma flotante, a menos que posea una representación idéntica.
+En el estándar de la IEEE se establece que las operaciones aritméticas que involucran un NaN producen un NaN, permitiendo que este valor pueda propagarse a través de los cálculos. En la propuesta de revisión del estándar (IEEE 754r), se establecen varias excepciones a esta regla, incluyendo la implementación de las funciones maxnum y minnum, que permiten el retorno de los valores mínimos y máximos de un operador y el número en caso de una evaluación conjunta entre un número y el valor NaN. Esta modificación es útil en las operaciones de estadística donde hay datos con valores desconocidos.
+Un concepto similar ha sido implementado en NaN toolbox para GNU Octave y MATLAB. En ambos programas, NaN posee un significado diferente y representa valores desconocidos. El NaN Toolbox posee funciones estadísticas que ignoran cualquier valor de NaN en los datos, evitando la propagación de este resultado. La mayoría de los algoritmos se basan en la función SUMSKIPNAN,1 cual suma y cuenta todos los datos que toman valores de NaN.
+Operaciones que crean NaN[editar]
+Los siguientes casos pueden generar el estado de NaN en la mayoría de los lenguajes de programación que acepten este estado como retorno de una función matemática:
+•	Todas las operaciones matemáticas que posean NaN como operando matemático.
+•	Las divisiones indeterminadas o por infinito (0/0, ∞/∞, ∞/-∞, -∞/∞)
+•	Las multiplicaciones de 0 por infinito (0×∞, 0×-∞)
+•	Las restas de valores infinitos (∞ -∞)
+•	Aplicando funciones que excedan el dominio de la misma. Por ejemplo, la raíz cuadrada de un número negativo, logaritmo de cualquier número menor o igual que 0, o la inversa de un coseno que sea menor que -1 o mayor que +1.
+Sin embargo, es importante destacar que los resultados NaN no son necesariamente generados por el procesador. En el caso de los NaN con dígito 1, el primer elementos siempre es válido para cada procesador, en el resto no necesariamente lo es. Por ejemplo, en la arquitectura Intel, la Unidad de Coma Flotante nunca crea una excepción de NaN en el primer caso. En los otros casos puede generar excepciones, pero no NaN. Sin embargo, el software que determina las excepciones puede examinar los operadores y decidir si retorna el estado NaN.
+Tipos de NaN[editar]
+Existen dos tipos de NaN, que se diferencian por las consecuencias que trae la indeterminación de la operación, generando o no excepciones adjuntas a la operación que resulta con el valor de NaN.
+NaN simple[editar]
+NaN simple (en inglés, quiet NaN) son las operaciones que no generan otras excepciones adicionales para ser propagadas a través de todas las operaciones. Las excepciones que se asocian a NaN no pueden ser pasados al usuario sin ser convertido o posee ciertas conversiones para ser utilizados, como por ejemplo, el ingreso no permitido en javascript, genera valores de NaN.
+NaN señalizados[editar]
+NaN señalizado (en inglés, Signalling NaN) son formas especial de NaN cuando se genera el problema y debe generarse una excepción de invalidez de la operación y, si es necesario, prosigue la operación mediante un NaN simple. Fue introducido en el estándar IEEE 754. Debido a su gran libertad de definición, se puede usar el valor de NaN en los siguientes casos, que dependen directamente del lenguaje de programación:
+•	Llenado de memoria sin inicializar con NaN señalizados puede producir una excepción inválida si los datos son usados antes de su asignación de valor.
+•	Uso de NaN señalizados como parte de objetos más complicados como:
+o	un número que posee un underflow u overflow.
+o	un número en un formato de precisión mayor al admitido.
+o	un número complejo.
+Cuando se encuentra este valor de NaN, se puede retornar un índice al resultado obtenido. En la práctica, esta aproximación posee varias complicaciones. El tratamiento del bit de signo del valor NaN para operaciones simples, como el valor absoluto, es diferente a las operaciones aritméticas normales.
+
+
+
+
+La unidad de estado sólido, SSD (acrónimo inglés de solid-state drive) es un tipo de dispositivo de almacenamiento de datos que utiliza memoria no volátil, como la memoria flash, para almacenar datos, en lugar de los platos o discos magnéticos de las unidades de discos duros (HDD) convencionales.
+En comparación con los discos duros tradicionales, las unidades de estado sólido son menos sensibles a los golpes al no tener partes móviles, son prácticamente inaudibles, y poseen un menor tiempo de acceso y de latencia, lo que se traduce en una mejora del rendimiento exponencial en los tiempos de carga de los sistemas operativos. En contrapartida, su vida útil es muy inferior, ya que tienen un número limitado de ciclos de escritura, pudiendo producirse la pérdida absoluta de los datos de forma inesperada e irrecuperable. Las SSD hacen uso de la misma interfaz SATA que los discos duros, por lo que son fácilmente intercambiables sin tener que recurrir a adaptadores o tarjetas de expansión para compatibilizarlos con el equipo.
+A partir de 2010, la mayoría de las SSD utilizan memoria flash basada en puertas NAND, que retiene los datos sin alimentación eléctrica. Para aplicaciones que requieren acceso rápido, pero no necesariamente la persistencia de datos después de la pérdida de potencia, las SSD pueden ser construidos a partir de memoria de acceso aleatorio (RAM). Estos dispositivos pueden emplear fuentes de alimentación independientes, como baterías, para mantener los datos después de la desconexión de la corriente eléctrica.1
+Se han desarrollado dispositivos que combinan ambas tecnologías discos duros con memorias flash, que se denominan unidades de estado sólido híbridas (SSHD), que intentan aunar capacidad y velocidad a precios inferiores a las SSD.
+
+
+Discos duros SATA
+Los discos duros SATA son un tipo concreto de disco duro interno. Consiste en una interfaz de transferencia de datos entre discos duros y la placa base que permite una mayor velocidad, aprovechamiento, capacidad para conectar unidades a la vez y mayor longitud de cable de transmisión de datos que el anterior P-ATA.
+Características de los discos duros SATA
+Su arquitectura es punto a punto, por lo que la conexión de disco duro y puerto es directa.
+Los discos duros SATA se conectan directamente al puerto Serial ATA, yendo cada disco de forma independiente y determinando cuál es el de inicio del sistema en la BIOS. Utilizan cables planos y estrechos de 7 hilos para una mayor longitud de cables y refrigeración del sistema.
+Su interior está libre de polvo y aire para evitar choques entre partículas y la posible pérdida de datos por ello. El disco gira todo el tiempo en que permanece encendido.
+La configuración de los discos duros SATA es mucho más sencilla y los dispositivos son mucho más actualizables. Por eso, son los más utilizados.
+Su funcionamiento es muy sencillo, ya que el ordenador envía las señales eléctricas a la bobina electromagnética que se polariza y transmite su magnetismo al disco en movimiento, las partículas magnéticas se reacomodan al pasar por la bobina y la información se almacena como partículas magnéticas ordenadas.
+
